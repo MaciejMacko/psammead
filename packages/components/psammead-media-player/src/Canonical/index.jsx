@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { string } from 'prop-types';
 import styled from 'styled-components';
+
+const useLoader = (iframe, handleLoad) => {
+  useEffect(() => {
+    iframe.current.addEventListener('load', handleLoad);
+  });
+};
 
 const Canonical = ({ src, title, placeholderSrc }) => {
   const backgroundStyle = `
@@ -20,15 +26,28 @@ const Canonical = ({ src, title, placeholderSrc }) => {
     ${placeholderSrc ? backgroundStyle : ''}
   `;
 
+  const [isLoading, setLoader] = useState(true);
+
+  const handleLoad = () => {
+    setLoader(false);
+  };
+
+  const iframe = useRef(null);
+  useLoader(iframe, handleLoad);
+
   return (
-    <StyledIframe
-      src={src}
-      title={title}
-      allow="autoplay; fullscreen"
-      scrolling="no"
-      gesture="media"
-      allowFullScreen
-    />
+    <>
+      {isLoading && <span>Loading...</span>}
+      <StyledIframe
+        src={src}
+        ref={iframe}
+        title={title}
+        allow="autoplay; fullscreen"
+        scrolling="no"
+        gesture="media"
+        allowFullScreen
+      />
+    </>
   );
 };
 
