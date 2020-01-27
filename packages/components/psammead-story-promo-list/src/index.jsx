@@ -39,10 +39,13 @@ export const StoryPromoLi = styled.li.attrs({
       padding-top: ${GEL_SPACING_TRPL};
     }
   }
-
   &:last-child {
-    padding-bottom: 0;
     border: none;
+  }
+  @media (max-width: ${GEL_GROUP_3_SCREEN_WIDTH_MAX}) {
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 `;
 

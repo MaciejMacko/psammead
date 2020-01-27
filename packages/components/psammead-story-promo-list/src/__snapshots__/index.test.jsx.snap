@@ -54,7 +54,6 @@ exports[`StoryPromo list should render correctly 1`] = `
 }
 
 .c1:last-child {
-  padding-bottom: 0;
   border: none;
 }
 
@@ -186,6 +185,12 @@ exports[`StoryPromo list should render correctly 1`] = `
 @media (min-width:63rem) {
   .c1:first-child {
     padding-top: 1.5rem;
+  }
+}
+
+@media (max-width:62.9375rem) {
+  .c1:last-child {
+    padding-bottom: 0;
   }
 }
 
